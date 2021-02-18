@@ -2,6 +2,8 @@
 
 Projeto desenvolvido no curso [Typescript: The Complete Developer's Guide](https://www.udemy.com/course/typescript-the-complete-developers-guide/) apenas com o propósito de aprender mais sobre `Typescript`.
 
+O projeto segue como base antigos frameworks como o [Marionette JS](https://marionettejs.com/), por exemplo.
+
 <br>
 
 ## Como executar:
