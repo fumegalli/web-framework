@@ -1,9 +1,6 @@
 {
   "users": [
     {
-      "id": 1
-    },
-    {
       "name": "Fulano",
       "age": 999,
       "id": 2
