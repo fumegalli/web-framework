@@ -18,13 +18,13 @@ export class Collection<T, K> {
     return this.events.trigger;
   }
 
-  fetch(): void {
-    axios.get(this.rootUrl).then(({ data }) => {
-      data.forEach((value: K) => {
-        this.models.push(this.deserialize(value));
-      });
-  
-      this.trigger('change');
+  async fetch(): Promise<void> {
+    const { data } = await axios.get(this.rootUrl);
+
+    data.forEach((value: K) => {
+      this.models.push(this.deserialize(value));
     });
+
+    this.trigger('change');
   }
 }
