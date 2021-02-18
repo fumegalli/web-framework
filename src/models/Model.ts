@@ -39,27 +39,23 @@ export class Model<T extends HasId> {
     this.events.trigger('change');
   }
 
-  async fetch(): Promise<void> {
+  fetch(): void {
     const id = this.attributes.get('id');
 
     if (typeof id !== 'number') {
       throw Error('Cannot fetch without an id');
     }
 
-    const { data } = await this.sync.fetch(id);
-
-    this.set(data);
+    this.sync.fetch(id).then(({ data }) => {
+      this.set(data);
+    });
   }
 
-  async save(): Promise<void> {
+  save(): void {
     const user = this.attributes.getAll();
 
-    try {
-      await this.sync.save(user);
-
-      this.events.trigger('save');
-    } catch (_) {
-      this.events.trigger('error');
-    }
+    this.sync.save(user)
+      .then(() => this.events.trigger('save'))
+      .catch(() => this.events.trigger('error'));
   }
 }
